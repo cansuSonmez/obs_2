@@ -33,5 +33,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
         String ogr = result.getResponse().getContentAsString();
         Ogretmen result_ogretmen = new ObjectMapper().readValue(ogr, Ogretmen.class);
         Assertions.assertEquals(result_ogretmen, new Ogretmen(6, "Onur"));
+        //yeni ekledim
+
+        System.out.println("değişiklik var");
+        System.out.println("yenisi");
     }
 }
