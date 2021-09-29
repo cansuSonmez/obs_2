@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Anasayfa</title>
+</head>
+<body>
+<ul>
+    <li><a href="ogretmen" th:text="#{homepage.ogretmen_link}"></a></li>
+    <li><a href="ogrenci" th:text="#{homepage.ogrenci_link}"></a></li>
+    <li><a href="konu" th:text="#{homepage.konu_link}"></a></li>
+    <li><a href="ders" th:text="#{homepage.ders_link}"></a></li>
+    <li><a href="admin" th:text="#{homepage.admin_link}"></a></li>
+    <li><a href="logout" th:text="#{homepage.logout_link}"></a></li>
+</ul>
+<br/>
+<table>
+    <thead>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Sil</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ogrenci: ${ogrenciler}">
+        <td th:text="${ogrenci.number}"/>
+        <td th:text="${ogrenci.name}"/>
+        <td>
+            <form sec:authorize="isAuthenticated()" th:action="ogrenci" method="post">
+                <input type="hidden" th:value="${ogrenci.id}" name="id">
+                <input type="submit" th:value="#{ogrenci.sil}">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<h1 align="center" th:text="#{ogretmen.baslik.yeni_ogretmen}"></h1>
+</body>
+</html>

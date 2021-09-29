@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Anasayfa</title>
+</head>
+<body>
+<ul>
+    <li><a href="ogretmen" th:text="#{homepage.ogretmen_link}"></a></li>
+    <li><a href="ogrenci" th:text="#{homepage.ogrenci_link}"></a></li>
+    <li><a href="konu" th:text="#{homepage.konu_link}"></a></li>
+    <li><a href="ders" th:text="#{homepage.ders_link}"></a></li>
+    <li><a href="admin" th:text="#{homepage.admin_link}"></a></li>
+    <li><a href="logout" th:text="#{homepage.logout_link}"></a></li>
+</ul>
+<br/>
+<table>
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="konu: ${konular}">
+        <td></td>
+        <td th:text="${konu.konu}"/>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <a th:if="${page_num_prev != null}" th:href="@{'konu?page_num=' + ${page_num_prev}}" th:text="#{konu.geri}"></a>
+        </td>
+        <td></td>
+        <td>
+            <a th:if="${page_num_next}" th:href="@{'konu?page_num=' + ${page_num_next}}" th:text="#{konu.ileri}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+</body>
+</html>

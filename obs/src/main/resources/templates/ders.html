@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Anasayfa</title>
+</head>
+<body>
+<ul>
+    <li><a href="ogretmen" th:text="#{homepage.ogretmen_link}"></a></li>
+    <li><a href="ogrenci" th:text="#{homepage.ogrenci_link}"></a></li>
+    <li><a href="konu" th:text="#{homepage.konu_link}"></a></li>
+    <li><a href="ders" th:text="#{homepage.ders_link}"></a></li>
+    <li><a href="admin" th:text="#{homepage.admin_link}"></a></li>
+    <li><a href="logout" th:text="#{homepage.logout_link}"></a></li>
+</ul>
+<br/>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dersDTO: ${dersler}">
+        <td th:text="${dersDTO.konu_name}"/>
+        <td th:text="${dersDTO.ogretmen_name}"/>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<form th:action="ders" th:object="${ders}" method="post">
+    <select th:field="*{ogretmen_id}">
+        <option th:each="ogretmen : ${ogretmenler}" th:value="${ogretmen.ogr_id}"
+                th:text="${ogretmen.ogr_name}"></option>
+    </select>
+    <select th:field="*{konu_id}">
+        <option th:each="konu : ${konular}" th:value="${konu.konu_id}" th:text="${konu.konu}"></option>
+    </select>
+    <input type="submit" th:value="#{ders.kaydet}">
+</form>
+<br/>
+</body>
+</html>
